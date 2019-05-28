@@ -1,6 +1,7 @@
 import peasy.*;
 PeasyCam cam;
-float orbit =0;
+float orbit=0;
+float spin=0;
 PImage sunTexture;
 PImage earthTexture;
 PImage moonTexture;
@@ -22,7 +23,7 @@ PShape jupiter;
 PShape saturn;
 PShape uranus;
 PShape neptune;
-
+int count=0;
 
 void setup() { 
   size(960, 576, P3D);
@@ -112,25 +113,45 @@ void setup() {
 
 void draw() {
   background(stars);
+  //lightSpecular(70, 20, 20);
+  //specular(70, 20, 20);
+
 
 
 
   orbit +=.01;
-  
-  if (keyPressed)
-  orbit-=.01;
+  spin+=.01;
+
+
+
+
+  if (keyPressed) {  
+    orbit-=.01;
+    spin-=.01;
+  }
+
+
+
 
 
   //sun 
+  //rotateX(PI/2);
+  pushMatrix();
+  rotateY(spin*2);
   shape(sun); 
+  popMatrix();
+
+
   pointLight(220, 220, 220, 0, 0, 0); 
   ambientLight(70, 70, 70);
+
 
 
   //earth
   pushMatrix();
   rotate(-orbit);
   translate(280, 0, 20);
+  rotateX(PI*2);
   shape(earth);
 
 
@@ -168,6 +189,8 @@ void draw() {
   pushMatrix();
   rotate(-orbit*0.501);
   translate(430, 0, 0);
+  rotateX(PI/4);
+  rotateY(spin*10);
   shape(jupiter);
   popMatrix();
 
