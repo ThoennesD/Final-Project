@@ -2,6 +2,7 @@ import peasy.*;
 PeasyCam cam;
 float orbit=0;
 float spin=0;
+float x=.01;
 PImage sunTexture;
 PImage earthTexture;
 PImage moonTexture;
@@ -23,7 +24,7 @@ PShape jupiter;
 PShape saturn;
 PShape uranus;
 PShape neptune;
-int count=0;
+
 
 void setup() { 
   size(960, 576, P3D);
@@ -32,6 +33,7 @@ void setup() {
   cam.setMaximumDistance(3000);
   cam.setPitchRotationMode();
   smooth(2);
+
 
   //stars texture
   stars=loadImage("starfield.jpg");
@@ -113,54 +115,35 @@ void setup() {
 
 void draw() {
   background(stars);
-  //lightSpecular(70, 20, 20);
-  //specular(70, 20, 20);
-
-
-
-
-  orbit +=.01;
-  spin+=.01;
-
-
-
-
-  if (keyPressed) {  
-    orbit-=.01;
-    spin-=.01;
+  orbit+=x;
+  spin+=x;
+  if (keyPressed && key=='a') {  
+    orbit-=x;
+    spin-=x;
   }
 
-
-
-
-
   //sun 
-  //rotateX(PI/2);
   pushMatrix();
-  rotateY(spin*2);
-  //rotate((3*PI/2));
-  
+  rotateY(spin*.3);
   shape(sun); 
   popMatrix();
-
-
   pointLight(220, 220, 220, 0, 0, 0); 
   ambientLight(50, 50, 50);
-
-
 
   //earth
   pushMatrix();
   rotate(-orbit);
   translate(280, 0, 20);
-  rotateX(PI*2);
+  rotateX((3*PI)/2);
+  rotateY(spin*2);
   shape(earth);
 
 
   //moon
   pushMatrix(); 
-  rotate(-orbit*4);
+  rotate(-orbit*2);
   translate(36, 0);
+  rotateX((3*PI)/2);
   shape(moon);
   popMatrix();
   popMatrix();
@@ -168,15 +151,19 @@ void draw() {
 
   //mercury
   pushMatrix();
-  rotate(-orbit*3.1);
+  rotate(-orbit*1.56);
   translate(165, 0, 5);
+  rotateX((3*PI)/2);
+  rotateY(spin*3);
   shape(mercury);
   popMatrix();
 
   //venus
   pushMatrix();
-  rotate(-orbit*1.624);
+  rotate(-orbit*1.224);
   translate(220, 0, 22);
+  rotateX((3*PI)/2);
+  rotateY(spin*2.5);
   shape(venus);
   popMatrix();
 
@@ -184,6 +171,8 @@ void draw() {
   pushMatrix();
   rotate(-orbit*0.651);
   translate(360, 0, 28);
+  rotateX((3*PI)/2);
+  rotateY(spin*1.5);
   shape(mars);
   popMatrix();
 
@@ -192,7 +181,7 @@ void draw() {
   rotate(-orbit*0.501);
   translate(430, 0, 0);        
   rotateX((3*PI)/2);
-  rotateY(spin);
+  rotateY(spin*1.25);
   shape(jupiter);
   popMatrix();
 
@@ -200,6 +189,8 @@ void draw() {
   pushMatrix();
   rotate(-orbit*.333);
   translate(490, 0, 32);
+  rotateX((3*PI)/2);
+  rotateY(spin);
   shape(saturn);
   popMatrix();
 
@@ -209,12 +200,16 @@ void draw() {
   rotate(-orbit*.222);
   translate(550, 0, 16);
   shape(uranus);
+  rotateX((3*PI)/2);
+  rotateY(spin*.85);
   popMatrix();
 
   //neptune
   pushMatrix();
   rotate(-orbit*.111);
   translate(610, 0, -5);
+  rotateX((3*PI)/2);
+  rotateY(spin*.75);
   shape(neptune);
   popMatrix();
 }
