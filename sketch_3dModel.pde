@@ -124,7 +124,7 @@ void draw() {
   //pause animation
   if (keyPressed && key=='a') {  
     orbit-=.005;
-    spin-=.015;
+    spin-=.0035;
   }
 
   //random 
@@ -141,7 +141,8 @@ void draw() {
 
   //sun 
   pushMatrix();
-  rotateY(spin*.3);
+  rotateX((3*PI)/2);
+  rotateY(spin*.6);
   shape(sun); 
   popMatrix();
   pointLight(220, 220, 220, 0, 0, 0); 
@@ -151,17 +152,19 @@ void draw() {
   pushMatrix();
   rotate(-orbit);
   translate(280, 0, 20);
-  rotateX((3*PI)/2);
-  rotateY(spin*2);
-  shape(earth);
-
+  
   //moon
-  pushMatrix(); 
+   pushMatrix(); 
   rotate(-orbit*6);
   translate(36, 0);  
   shape(moon);
   rotateX((3*PI)/2);
   popMatrix();
+  
+  //more earth
+  rotateX((3*PI)/2);
+  rotateY(spin*2);
+  shape(earth);
   popMatrix();
 
 
@@ -211,8 +214,8 @@ void draw() {
 
   //saturn's ring
   pushMatrix();
-  stroke(235, 165, 71, 100);
-  rotateX((3*PI)/2);  
+  stroke(249, 189, 111, 100);
+  rotateX((5*PI)/3);  
   rotate(spin*2);
   strokeWeight(1.2);
   ellipse(0, 0, 75, 75);
