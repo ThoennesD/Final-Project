@@ -29,7 +29,7 @@ PShape neptune;
 
 
 void setup() { 
-  size(960, 576, P3D);
+  size(1200, 720, P3D);
   cam=new PeasyCam(this, 800);
   cam.setMinimumDistance(50);
   cam.setMaximumDistance(3000);
@@ -119,18 +119,19 @@ void setup() {
 void draw() {
   background(stars);
   orbit+=.005;
-  spin+=.0035;
+  spin+=.0045;
 
   //pause animation
   if (keyPressed && key=='a') {  
     orbit-=.005;
-    spin-=.0035;
+    spin-=.0045;
   }
 
   //random 
   if (keyPressed && key=='s') {
-    orbit=random(0, 360);
-    spin=random(0, 360);
+    orbit=(float)(Math.random()*359)+1;
+    spin=(float)(Math.random()*359)+1;
+    println(orbit);
   }
 
   //reset animation
@@ -138,7 +139,9 @@ void draw() {
     orbit=0;
     spin=0;
   }
-
+  
+  
+  
   //sun 
   pushMatrix();
   rotateX((3*PI)/2);
@@ -151,7 +154,7 @@ void draw() {
   //earth
   pushMatrix();
   rotate(-orbit);
-  translate(280, 0, 20);
+  translate(280, 0, 10);
   
   //moon
    pushMatrix(); 
@@ -180,7 +183,7 @@ void draw() {
   //venus
   pushMatrix();
   rotate(-orbit*1.224);
-  translate(220, 0, 22);
+  translate(220, 0, 10);
   rotateX((3*PI)/2);
   rotateY(spin*2.5);
   shape(venus);
@@ -189,7 +192,7 @@ void draw() {
   //mars
   pushMatrix();
   rotate(-orbit*0.651);
-  translate(360, 0, 28);
+  translate(360, 0, 12);
   rotateX((3*PI)/2);
   rotateY(spin*1.5);
   shape(mars);
@@ -207,7 +210,7 @@ void draw() {
   //saturn
   pushMatrix();
   rotate(-orbit*.333);
-  translate(510, 0, 14);
+  translate(520, 0, 12);
   rotateX((3*PI)/2);
   rotateY(spin);
   shape(saturn);
@@ -215,9 +218,10 @@ void draw() {
   //saturn's ring
   pushMatrix();
   stroke(249, 189, 111, 100);
-  rotateX((5*PI)/3);  
+  rotateX((14*PI)/9);  
   rotate(spin*2);
   strokeWeight(1.2);
+  
   ellipse(0, 0, 75, 75);
   popMatrix();
   popMatrix();
@@ -226,7 +230,7 @@ void draw() {
   //uranus
   pushMatrix();
   rotate(-orbit*.222);
-  translate(590, 0, 8);
+  translate(600, 0, 8);
   shape(uranus);
   rotateX((3*PI)/2);
   rotateY(spin*.85);
@@ -235,7 +239,7 @@ void draw() {
   //neptune
   pushMatrix();
   rotate(-orbit*.111);
-  translate(620, 0, 0);
+  translate(680, 0, 0);
   rotateX((3*PI)/2);
   rotateY(spin*.75);
   shape(neptune);
