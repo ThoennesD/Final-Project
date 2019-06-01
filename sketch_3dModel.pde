@@ -2,7 +2,7 @@ import peasy.*;
 PeasyCam cam;
 float orbit;
 float spin;
-
+int asteroidMove=2000;
 PImage sunTexture;
 PImage earthTexture;
 PImage moonTexture;
@@ -13,6 +13,7 @@ PImage jupiterTexture;
 PImage saturnTexture;
 PImage uranusTexture;
 PImage neptuneTexture;
+PImage asteroid;
 
 PImage stars;
 PShape sun;
@@ -25,6 +26,7 @@ PShape jupiter;
 PShape saturn;
 PShape uranus;
 PShape neptune;
+PShape ast;
 
 
 
@@ -41,6 +43,12 @@ void setup() {
   stars=loadImage("starfield.jpg");
 
 
+  //asteroid texture
+  asteroid=loadImage("asteroid.jpg");
+  noStroke();
+  noFill();
+  ast=createShape(SPHERE, 15);
+  ast.setTexture(asteroid);
 
 
 
@@ -118,8 +126,12 @@ void setup() {
 
 void draw() {
   background(stars);
+
   orbit+=.005;
   spin+=.0045;
+
+
+
 
   //pause animation
   if (keyPressed && key=='a') {  
@@ -139,9 +151,9 @@ void draw() {
     orbit=0;
     spin=0;
   }
-  
-  
-  
+
+
+
   //sun 
   pushMatrix();
   rotateX((3*PI)/2);
@@ -155,15 +167,15 @@ void draw() {
   pushMatrix();
   rotate(-orbit);
   translate(280, 0, 10);
-  
+
   //moon
-   pushMatrix(); 
+  pushMatrix(); 
   rotate(-orbit*6);
   translate(36, 0);  
   shape(moon);
   rotateX((3*PI)/2);
   popMatrix();
-  
+
   //more earth
   rotateX((3*PI)/2);
   rotateY(spin*2);
@@ -218,10 +230,9 @@ void draw() {
   //saturn's ring
   pushMatrix();
   stroke(249, 189, 111, 100);
-  rotateX((14*PI)/9);  
+  rotateX((55*PI)/36);  
   rotate(spin*2);
   strokeWeight(1.2);
-  
   ellipse(0, 0, 75, 75);
   popMatrix();
   popMatrix();
@@ -244,4 +255,19 @@ void draw() {
   rotateY(spin*.75);
   shape(neptune);
   popMatrix();
+
+  //asteroid
+  if (keyPressed && key=='b') {
+    if (asteroidMove<-5000) {
+      asteroidMove=2000;
+    }
+    asteroidMove-=12;  
+
+    rotate(-orbit*1.2);
+    translate(asteroidMove, -500, -500);
+    shape(ast);
+    stroke(0, 0, 202);
+    strokeWeight(5);
+    ellipse(25, 0, -35, 0);
+  }
 }
