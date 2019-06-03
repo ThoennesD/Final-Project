@@ -47,4 +47,4 @@ David Thoennes
 * Daniel Shiffman - member of the Board of Directors for Processing, introduced me to the pushMatrix() and popMatrix() functions
 * Galactic Images (http://www.galacticimages.com/) - used one of their free textures, this is where I got the starfield texture for the background
 * JHT's Planetary Pixel Emporium (http://planetpixelemporium.com/) - this is where I found a majority of my three dimensional texture maps that I displayed on my planets
-* Nasa - obtained the three dimensional texture maps for the Sun and Asteroid from here
+* NASA - obtained the three dimensional texture maps for the Sun and Asteroid from here
