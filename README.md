@@ -1,6 +1,11 @@
 # Final-Project
 Solar System Final Project for CompSci
 
+Hold 'A' to pause the animation
+Press 'S' to randomize the animation orbits
+Press 'D' to reset the animation
+Hold B for a long time to see a shooting star/asteroid
+
 
 # Project Title and purpose
 
